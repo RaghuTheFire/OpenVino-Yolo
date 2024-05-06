@@ -1,6 +1,6 @@
 <h1 align="center"><span>YOLOv9-OpenVINO</span></h1>
 
-C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) using Openvino Backend.
+C++ implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) using Openvino Backend.
 
 <p align="center" margin: 0 auto;>
   <img src="result.jpg"/>
@@ -18,15 +18,6 @@ ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 
 ## ⚙️ Build
 
-#### Python
-
-The following command will install openvino python with the `ovc` api:
-
-``` shell
-cd python
-pip install -r requirement.txt
-```
-
 #### C++
 
 1. Download [openvino](https://storage.openvinotoolkit.org/repositories/openvino/packages/2023.3/windows/) and install it following [this guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
@@ -42,23 +33,6 @@ make
 ```
 
 ## 🚀 Inference
-
-#### Python
-
-Usage: 
-``` shell
-python main.py --model=<model path> --data_path=<data path> --score_thr=<score> --nms_thr=<nms>
-```
-
-Examples:
-``` shell
-# infer an image
-python main.py --model=yolov9-c-converted.xml --data_path=test.jpg
-# infer a folder(images)
-python main.py --model=yolov9-c-converted.xml --data_path=data
-# infer a video
-python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
-```
 
 #### C++
 
