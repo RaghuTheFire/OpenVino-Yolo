@@ -1,4 +1,4 @@
-# Yolo-OpenVino
+# OpenVino-Yolo 
 YOLO (You Only Look Once) is a groundbreaking object detection algorithm that has revolutionized computer vision tasks, enabling real-time detection of objects in images and videos. When coupled with OpenVINO (Open Visual Inference & Neural Network Optimization), the performance of YOLO is further enhanced, making it a formidable tool for various applications ranging from surveillance to autonomous vehicles.
 
 At its core, YOLO employs a single neural network to predict bounding boxes and class probabilities directly from full images in one evaluation. This unique approach enables YOLO to achieve impressive speed while maintaining high accuracy. By dividing the image into a grid and predicting bounding boxes and class probabilities for each grid cell, YOLO efficiently detects multiple objects in a single pass.
