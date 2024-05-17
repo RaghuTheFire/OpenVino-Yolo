@@ -5,9 +5,6 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include<openvino/openvino.hpp>
-#include <fstream>
-#include <vector>
-#include <random>
 
 struct Config {
 	float confThreshold;
@@ -18,12 +15,11 @@ struct Config {
 	std::string onnx_path;
 };
 
-struct ImageShape
+struct Resize
 {
-	float dw;
-	float dh;
-    float width;
-    float height;
+	cv::Mat resized_image;
+	int dw;
+	int dh;
 };
 
 struct Detection {
@@ -32,10 +28,10 @@ struct Detection {
 	cv::Rect box;
 };
 
-class YOLOV9{
+class YOLOX {
 public:
-	YOLOV9(Config config);
-	~YOLOV9();
+	YOLOX(Config config);
+	~YOLOX();
 	void detect(cv::Mat& frame);
 
 private:
@@ -44,13 +40,16 @@ private:
 	float scoreThreshold;
 	int inpWidth;
 	int inpHeight;
-    float scale;
-	ImageShape imageshape;
+	float rx;   // the width ratio of original image and resized image
+	float ry;   // the height ratio of original image and resized image
 	std::string onnx_path;
+	Resize resize;
 	ov::Tensor input_tensor;
 	ov::InferRequest infer_request;
 	ov::CompiledModel compiled_model;
 	void initialmodel();
 	void preprocess_img(cv::Mat& frame);
 	void postprocess_img(cv::Mat& frame, float* detections, ov::Shape & output_shape);
+
+	cv::Mat out;
 };

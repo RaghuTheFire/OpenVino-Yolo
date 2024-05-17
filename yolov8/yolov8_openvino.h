@@ -9,6 +9,7 @@
 #include <vector>
 #include <random>
 
+
 struct Config {
 	float confThreshold;
 	float nmsThreshold;
@@ -18,12 +19,11 @@ struct Config {
 	std::string onnx_path;
 };
 
-struct ImageShape
+struct Resize
 {
-	float dw;
-	float dh;
-    float width;
-    float height;
+	cv::Mat resized_image;
+	int dw;
+	int dh;
 };
 
 struct Detection {
@@ -32,10 +32,10 @@ struct Detection {
 	cv::Rect box;
 };
 
-class YOLOV9{
+class YOLOV8 {
 public:
-	YOLOV9(Config config);
-	~YOLOV9();
+	YOLOV8(Config config);
+	~YOLOV8();
 	void detect(cv::Mat& frame);
 
 private:
@@ -44,9 +44,10 @@ private:
 	float scoreThreshold;
 	int inpWidth;
 	int inpHeight;
-    float scale;
-	ImageShape imageshape;
+	float rx;   // the width ratio of original image and resized image
+	float ry;   // the height ratio of original image and resized image
 	std::string onnx_path;
+	Resize resize;
 	ov::Tensor input_tensor;
 	ov::InferRequest infer_request;
 	ov::CompiledModel compiled_model;
